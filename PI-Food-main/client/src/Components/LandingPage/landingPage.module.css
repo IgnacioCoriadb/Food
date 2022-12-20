@@ -1,0 +1,54 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.container{
+    width: 100%;
+    height:100vh;
+    background-image: url("../../img/landingPage.jpg");
+    background-size: 100%;
+   
+}
+.container::before{
+    content: "";
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.2)
+
+}
+ .contenido{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    position: absolute;
+
+ }
+ .contenido h2{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 150px;
+    color:#f9ce07;
+    padding:20px;
+    margin: 90px
+}
+.contenido h2 span{
+    color: #fff
+}
+
+.contenido .btnIngresar{
+    font-size: 30px;
+    padding:  20px 60px;;
+    border-radius: 30px;  
+    border: 2px solid #fff; 
+  
+}
+.contenido .btnIngresar:hover{
+    background-color: #f9ce07;
+    color: #fff;
+}
