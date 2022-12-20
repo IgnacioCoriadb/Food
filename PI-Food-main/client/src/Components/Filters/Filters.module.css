@@ -1,0 +1,23 @@
+.filters{
+    margin: 20px;
+}
+.filters input{
+    padding: 15px;
+    width: 50%;
+}
+.order{
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.order button{
+    background-color: #fff;
+    border: 1px solid black;
+    padding: 10px 40px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    margin: 10px
+}
