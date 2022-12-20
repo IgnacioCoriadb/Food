@@ -157,7 +157,7 @@ const postRecipe =async (req,res)=>{
             name,
             summary,
             healthScore,
-            steps
+            steps,
         })
         dietId.forEach(async(diet) =>{
             const result = await Diet.findAll({
