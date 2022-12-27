@@ -1,0 +1,32 @@
+.container{
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    margin: 50px;
+    font-size: 3rem;
+}
+
+.container label{
+    display: inline-block;
+    width: 160px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.text_select{
+    display: flex;
+    flex-direction: column; 
+}
+
+.create{
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px 20px;
+    margin: 40px;
+    width: 180px;
+    border-radius: 20px;
+    background-color: #ffff;
+}

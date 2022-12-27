@@ -1,0 +1,15 @@
+.container{
+    position: relative;
+}
+
+.container h1{
+    padding: 20px;
+    margin: 10PX 
+}
+.container h2{
+    padding: 20px;
+}
+
+.puntos{
+    text-align: center;
+}

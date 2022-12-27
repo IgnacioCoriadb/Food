@@ -14,9 +14,8 @@ function NavBar(){
                 <div>
                     <ul className={style.links}>
                         <Link to="/home" className={style.link}><li>Home</li></Link>
-                        <Link to="/" className={style.link}><li>Nueva Receta</li></Link>
-                        <Link to="/" className={style.link}><li>Dietas</li></Link>
-                        <Link to="/" className={style.link}><li>Proyecto</li></Link>
+                        <Link to="/newRecipe" className={style.link}><li>Nueva Receta</li></Link>
+                        <Link to="/project" className={style.link}><li>Proyecto</li></Link>
                     </ul>
                 </div>
             </div>

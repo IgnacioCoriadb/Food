@@ -1,9 +1,8 @@
-.filters{
-    margin: 20px;
-}
+
 .filters input{
     padding: 15px;
     width: 50%;
+    margin: 40px 10px 10px 10px;
 }
 .order{
     margin: 50px;

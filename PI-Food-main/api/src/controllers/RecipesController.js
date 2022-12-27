@@ -13,7 +13,8 @@ const getAllRecipesApi = async() =>{
                 id: r.id,
                 image: r.image,
                 name: r.title,
-                diets: r.diets
+                diets: r.diets,
+                healthScore: r.healthScore
             }
         });
         return dataApi;
@@ -23,13 +24,6 @@ const getAllRecipesApi = async() =>{
 }
 //?----------------------GET/RECIPES ALL DB------------------------------------------
 const getAllRecipesDB = async() =>{
-    // await Recipe.create({
-    //     id:"ddeb27fb-d9a0-4624-be4d-4615062daed4",
-    //     name: "loremfsdafasdfasdfasdfdsfasdfsdafasdf",
-    //     summary: "Torta de chocolate con crema ",
-    //     healthScore:"4",
-    //     steps: "loremfsdafasdfasdfasdfdsfasdfsdafasdf"
-    // })
     try{
         const recipesDb = await Recipe.findAll({include: Diet});
         return recipesDb;
@@ -59,7 +53,7 @@ const getRecipesQuerryApi = async(name)=>{
         });
         return dataApi;
     }catch(e){
-        return e;
+         return e;
     }
 }
 //?-----------------------GET/RECIPES?NAME="..." DB----------------------------------
@@ -74,7 +68,7 @@ const getRecipesQuerryDB = async(name)=>{
         });
         return recipesQueryDb;
     }catch(e){
-        return e;
+         return e;
     }
 
 }
@@ -85,12 +79,12 @@ const queryRecipes_API_DB =async(name)=>{
         const db = await getRecipesQuerryDB(name);
     
         if(api.length >0 && db.length >0) return api.concat(db);
-        if (api.length > 0) return api;
-        if(db.length > 0) return db;
-        if(db.length === 0 && api.length === 0) return `No existe la receta con el nombre ${name}`;
+        else if (api.length > 0) return api;
+        else if(db.length > 0) return db;
+        else if(db.length === 0 && api.length === 0) return getAllRecipesApi();
 
     }catch(err){
-        return err;
+        return  err;
     }
     
     

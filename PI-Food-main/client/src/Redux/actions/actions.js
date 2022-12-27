@@ -1,8 +1,5 @@
 import axios from 'axios';
-import {GET_RECIPES} from "./actionsType.js";
-
-
-
+import {GET_RECIPES,GET_RECIPE_NAME,GET_RECIPE_ID,GET_DIETS,SORT_ALPHABETICAL,SORT_HEALTSCORE,ERROR} from "./actionsType.js";
 
 export function getRecipes(){
     return async(dispatch)=>{
@@ -12,5 +9,63 @@ export function getRecipes(){
         }catch(err){
             return err;
         }
+    }
+}
+
+export function getRecipeName(payload){
+    return async function(dispatch){
+        try{
+           const recipeName= await axios.get(`http://localhost:3001/recipes?name=${payload}`);
+           return dispatch({type: GET_RECIPE_NAME, payload: recipeName.data});
+        }catch(e){
+            return dispatch({type: ERROR, payload: e.message});
+        }
+    }
+}
+
+export function getRecipeId(id){
+    return async function(dispatch){
+        try{
+            const recipeId= await axios.get(`http://localhost:3001/recipes/${id}`);
+            dispatch({type:GET_RECIPE_ID, payload: recipeId.data});
+        }catch(e){
+            return e;
+        }
+    }
+}
+
+export function getDiets(){
+    return async (dispatch)=>{
+      try{
+        const diets = await axios.get(`http://localhost:3001/diets`);
+        dispatch({type: GET_DIETS, payload:diets.data})
+      }catch(err){
+        return err;
+      }
+    }
+}
+
+export function createRecipes(recipe){
+    return async ()=>{
+        try{
+            const  createRecipe = await axios.post(`http://localhost:3001/recipes/`,recipe);
+            return createRecipe;
+        }catch(err){
+            return err;
+        }
+    }
+}
+
+export function sortAlphabetic(payload){
+    return {
+        type: SORT_ALPHABETICAL,
+        payload: payload
+    }
+}
+
+export function sortHealtScore(payload){
+    return{
+        type: SORT_HEALTSCORE,
+        payload: payload
     }
 }

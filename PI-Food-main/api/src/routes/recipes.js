@@ -19,7 +19,7 @@ router.get("/:idRecipes", async(req, res) =>{
     
         res.json(await idRecipes_API_DB(idRecipes));
     }catch(err){
-        return err;
+         res.json(err);
     }
 });
 
