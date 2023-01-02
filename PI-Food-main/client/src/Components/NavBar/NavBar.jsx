@@ -9,11 +9,11 @@ function NavBar(){
         <div className={style.backgroundColor}>
             <div className={style.container}>
                 <div className={style.logo}>
-                    <Link to="/home"><img src={logo} alt="logo" /></Link>
+                    <Link to="/home"><img src={logo} alt="logo" onClick={() => window.location.replace('/home')} /></Link>
                 </div>
                 <div>
                     <ul className={style.links}>
-                        <Link to="/home" className={style.link}><li>Home</li></Link>
+                        <Link to="/home" className={style.link} onClick={() => window.location.replace('/home')}><li>Home</li></Link>
                         <Link to="/newRecipe" className={style.link}><li>Nueva Receta</li></Link>
                         <Link to="/project" className={style.link}><li>Proyecto</li></Link>
                     </ul>

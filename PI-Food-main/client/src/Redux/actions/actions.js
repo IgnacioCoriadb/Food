@@ -1,9 +1,10 @@
 import axios from 'axios';
-import {GET_RECIPES,GET_RECIPE_NAME,GET_RECIPE_ID,GET_DIETS,SORT_ALPHABETICAL,SORT_HEALTSCORE,ERROR} from "./actionsType.js";
+import {GET_RECIPES,GET_RECIPE_NAME,GET_RECIPE_ID,GET_DIETS,SORT_ALPHABETICAL,SORT_HEALTSCORE,LOADING,FILTER_BY_DIET} from "./actionsType.js";
 
 export function getRecipes(){
     return async(dispatch)=>{
         try{
+            dispatch({type: LOADING})
             const recipes = await axios.get(`http://localhost:3001/recipes`);
             dispatch({type:GET_RECIPES, payload: recipes.data});
         }catch(err){
@@ -18,7 +19,7 @@ export function getRecipeName(payload){
            const recipeName= await axios.get(`http://localhost:3001/recipes?name=${payload}`);
            return dispatch({type: GET_RECIPE_NAME, payload: recipeName.data});
         }catch(e){
-            return dispatch({type: ERROR, payload: e.message});
+            return e;
         }
     }
 }
@@ -66,6 +67,13 @@ export function sortAlphabetic(payload){
 export function sortHealtScore(payload){
     return{
         type: SORT_HEALTSCORE,
+        payload: payload
+    }
+}
+
+export function filterByDiet(payload){
+    return {
+        type: FILTER_BY_DIET,
         payload: payload
     }
 }

@@ -15,6 +15,7 @@ useEffect(()=>{
     dispatch(getRecipeId(id))
 },[id,dispatch])
 
+let keyDiets =0;
 return(
     <div className={style.container}>
         <NavBar></NavBar>
@@ -33,6 +34,14 @@ return(
                     <p>{r.healthScore}</p>
                     {typeof r.id === "number" ?  <p className={style.titles}>Tipo de Plato</p> : ""}
                     <p>{r.dishTypes}</p>
+                    {typeof r.id === "string" ? 
+                        <div>
+                            <p className={style.titles}>Dietas: </p>{r.diets.map(d=><li key={d.id}>{d.name}</li> )}
+                        </div> :
+                        <div>
+                            <p className={style.titles}>Dietas: </p>{r.diets.map(d=><li key={keyDiets++}>{d}</li>)}
+                        </div>
+                    }
                 </div>
             ))
         }

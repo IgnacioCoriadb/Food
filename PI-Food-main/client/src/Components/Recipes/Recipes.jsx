@@ -5,12 +5,13 @@ import style from "./Recipes.module.css";
 import Pagination from "../Pagination/Pagination";
 
 import Filter from "../Filters/Filter";
-import {sortAlphabetic,sortHealtScore} from "../../Redux/actions/actions";
+import {sortAlphabetic,sortHealtScore,filterByDiet} from "../../Redux/actions/actions";
 
 const Recipes = ()=>{
     const allRecipes =  useSelector(state=> state.recipes)
     const dispatch = useDispatch();    
-
+    const loading = useSelector(state=> state.loading);
+    
     const [order, setOrder] = useState('')
 
     //?paginado
@@ -37,17 +38,23 @@ const Recipes = ()=>{
         setOrder(e.target.value)
     }
 
+    const handleDiet =(e)=>{
+        dispatch(filterByDiet(e.target.value));
+        setCurrentPage(1);
+        setOrder(e.target.value)
+    }
         return (
             <div>
-                <Filter handleAlphabetical={handleAlphabetical} handleScore={handleScore}></Filter>
+                <Filter handleAlphabetical={handleAlphabetical} handleScore={handleScore} handleDiet={handleDiet}></Filter>
                 <div className={style.container}>
-               { console.log(recipesPaginated)}
-                      {recipesPaginated.length &&  recipesPaginated.map(r=>  {
-                                              
-
-                           return (<div key={r.id}> <Recipe key={r.id} id={r.id} image={r.image} diets={r.diets} name={r.name}></Recipe></div>)
-                      })
+                    {loading ? recipesPaginated.map(r=>  {          
+                        return (<div key={r.id}> <Recipe key={r.id} id={r.id} image={r.image} diets={r.diets} name={r.name}></Recipe></div>)
+                      }):
+                      <div>
+                        <h1>LOADING........</h1>
+                      </div>
                     }
+
                 </div>
        
                

@@ -6,7 +6,6 @@ import RecipeId from './Components/Recipes/RecipeId';
 import NewRecipe from './Components/NewRecipe/newRecipe';
 import Project from './Components/Project/Project';
 
-
 function App() {
   return (
     <div className="App">
@@ -17,7 +16,6 @@ function App() {
         <Route exact path="/recipe/:id" component={RecipeId}/>
         <Route exact path="/newRecipe" component={NewRecipe}/>
         <Route exact path="/project" component={Project}/>
-
       </Route>
     </div>
   );

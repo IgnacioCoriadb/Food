@@ -25,7 +25,20 @@ const getAllRecipesApi = async() =>{
 //?----------------------GET/RECIPES ALL DB------------------------------------------
 const getAllRecipesDB = async() =>{
     try{
-        const recipesDb = await Recipe.findAll({include: Diet});
+        const recipesDb = await Recipe.findAll(
+            {
+                include:{
+                    model: Diet,
+                    attributes: ['name'],
+                    through: {
+                        attributes: [],
+                    }
+                }    
+            
+            }
+            );
+        
+    
         return recipesDb;
     }catch(err){
         return err;
@@ -38,56 +51,29 @@ const allRecipes_DB_API = async()=>{
 
     return api.concat(db);
 }
-//?--------------------GET/RECIPES?NAME="..." API------------------------------------ 
-const getRecipesQuerryApi = async(name)=>{
+//?--------------------GET/RECIPES?NAME="..."------------------------------------ 
+const getRecipesQuery = async(name)=>{
     try{
-        const recipesApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=100&apiKey=${API_KEY}`)
-       
-        const dataApi = recipesApi.data.results.map((r)=>{
-            return {
-                id: r.id,
-                image: r.image,
-                name: r.title,
-                diets: r.diets
-            }
-        });
-        return dataApi;
-    }catch(e){
-         return e;
-    }
-}
-//?-----------------------GET/RECIPES?NAME="..." DB----------------------------------
-const getRecipesQuerryDB = async(name)=>{
-    try{
-        const recipesQueryDb = await Recipe.findAll({
-            where:{
-                name :{
-                    [Op.like]: `%${name}%`
+        const allRecipes =await allRecipes_DB_API();
+
+        let recipeByName= await allRecipes.filter(r=> r.name.toLowerCase().includes(name.toString().toLowerCase()));
+
+        if(recipeByName.length){
+            let recipes = recipeByName.map(r=>{
+                return{
+                    id: r.id,
+                    image: r.image,
+                    name: r.name,
+                    diets: r.diets
                 }
-            }
-        });
-        return recipesQueryDb;
+            })
+            return recipes;
+        }else{
+            return [];
+        }
     }catch(e){
          return e;
     }
-
-}
-//?------------------------CONCAT QUERYAPI-QUERYDB-----------------------------------
-const queryRecipes_API_DB =async(name)=>{
-    try{
-        const api = await getRecipesQuerryApi(name);
-        const db = await getRecipesQuerryDB(name);
-    
-        if(api.length >0 && db.length >0) return api.concat(db);
-        else if (api.length > 0) return api;
-        else if(db.length > 0) return db;
-        else if(db.length === 0 && api.length === 0) return getAllRecipesApi();
-
-    }catch(err){
-        return  err;
-    }
-    
-    
 }
 
 //?--------------------GET/RECIPES/{idReceta} API------------------------------------
@@ -174,7 +160,7 @@ const postRecipe =async (req,res)=>{
 
 module.exports = {
     allRecipes_DB_API,
-    queryRecipes_API_DB,
+    getRecipesQuery,
     idRecipes_API_DB,
     postRecipe
     

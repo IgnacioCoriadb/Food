@@ -4,4 +4,5 @@ export const GET_RECIPE_ID = 'GET_RECIPE_ID';
 export const GET_DIETS ='GET_DIETS';
 export const SORT_ALPHABETICAL = 'SORT_ALPHABETICAL';
 export const SORT_HEALTSCORE= " SORT_HEALTSCORE";
-export const ERROR ="ERROR";
+export const LOADING = " LOADING";
+export const FILTER_BY_DIET = "FILTER_BY_DIET";

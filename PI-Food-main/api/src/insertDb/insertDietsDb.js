@@ -1,17 +1,16 @@
 const {Diet} =require("../db"); 
 
 const diets = [
-    { "name":"Gluten Free"},
-    {"name":"Ketogenic"},
-    {"name":"Vegetarian"},
-    {"name":"Lacto-Vegetarian"},
-    {"name":"Ovo-Vegetarian"},
+    {"name":"Gluten Free"},
+    {"name":"Dairy Free"},
+    {"name":"Lacto ovo vegetarian"},
     {"name":"Vegan"},
-    {"name":"Pescetarian"},
-    {"name":"Paleo"},
+    {"name":"Paleolithic"},
     {"name":"Primal"},
-    {"name": "Low FODMAP"},
-    {"name": "Whole30"}
+    {"name":"Whole 30"},
+    {"name":"Pescatarian"},
+    {"name":"Ketogenic"},
+    {"name": "Fodmap friendly"},
 ];
 const inertDietsDb = async()=>{
     try{

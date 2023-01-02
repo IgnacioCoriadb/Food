@@ -6,7 +6,7 @@ const Recipe= ({id, name,diets,image, summary,healthScore, steps})=>{
     return (
         <div className={style.container}>
             {
-                <div>
+                <div >
                     <img src={image} alt="recipe" />
                     <div>
                         <p><b>Receta: </b><Link to={`/recipe/${id}`}>{name}</Link></p>
